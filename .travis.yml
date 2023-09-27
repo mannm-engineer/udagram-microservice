@@ -16,7 +16,8 @@ before_script:
 script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdi
   - |
-    for IMAGE_NAME in "${IMAGE_NAMES[@]}"; do
+    IFS=',' read -ra IMAGE_ARRAY <<< "$IMAGE_NAMES"
+    for IMAGE_NAME in "${IMAGE_ARRAY[@]}"; do
       IMAGE_FULL_NAME="$NAMESPACE/$IMAGE_NAME:latest"
       echo "Processing image: $IMAGE_FULL_NAME"
 
