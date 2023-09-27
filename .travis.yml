@@ -14,7 +14,7 @@ before_script:
   - echo "no tests"
 
 script:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdi
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - |
     IFS=',' read -ra IMAGE_ARRAY <<< "$IMAGE_NAMES"
     for IMAGE_NAME in "${IMAGE_ARRAY[@]}"; do
